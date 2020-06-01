@@ -3,11 +3,7 @@ import styled from "styled-components";
 type T = any;
 
 const SectionComponent: FC<T> = ({ children, className }) => {
-  return (
-    <Section className={`section ` + className}>
-      <div className="container">{children}</div>
-    </Section>
-  );
+  return <Section className={`section ` + className}>{children}</Section>;
 };
 
 const Section = styled.section`
@@ -15,13 +11,6 @@ const Section = styled.section`
   padding: 2rem 0;
   max-width: 100%;
   overflow: hidden;
-
-  .container {
-    max-width: ${({ theme }) => theme.maxWidth};
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 1px solid red; */
-  }
 `;
 
 export default SectionComponent;

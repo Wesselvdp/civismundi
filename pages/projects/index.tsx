@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { shopifyClient } from "@shopify";
+import { shopifyClient } from "@components/post/node_modules/@shopify";
 import { GetStaticProps } from "next";
 
 import Collection from "@components/sections/Collection";

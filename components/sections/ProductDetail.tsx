@@ -5,7 +5,7 @@ type T = {
   product: Product;
 };
 
-import ProductConfig from "@components/product/ProductConfig";
+import ProductConfig from "@components/post/ProductConfig";
 import Section from "./Section";
 
 const ProductDetail: FC<T> = ({ product }) => {
