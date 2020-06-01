@@ -8,6 +8,11 @@ module.exports = ({ config }) => {
       presets: [require.resolve("babel-preset-react-app")],
     },
   });
+  config.module.rules.push({
+    test: /\.scss$/,
+    loaders: ["style-loader", "css-loader", "sass-loader"],
+    include: path.resolve(__dirname, "../"),
+  });
   config.resolve.plugins = config.resolve.plugins || [];
 
   config.resolve.plugins.push(
