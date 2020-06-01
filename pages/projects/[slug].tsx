@@ -12,7 +12,7 @@ type T = {
 const getData = async () => {
   const query = `
   query($id: ID!) {
-    Movie(id: $id) {
+    Project(id: $id) {
       title
     }
   }
@@ -27,14 +27,14 @@ const getData = async () => {
 };
 
 const ProductPage: FC<T> = ({ projectData }) => {
-  const project = JSON.parse(projectData);
+  const project = JSON.parse(projectData).data.allProject[0];
   useEffect(() => {
-    getData();
-    console.log("projcet", project);
+    console.log("projecet", project);
   }, []);
   return (
     <div>
-      <h1>{project.data.Movie.title}</h1>
+      {" "}
+      <h1>{project.title}</h1>
     </div>
   );
 };
@@ -43,21 +43,32 @@ const ProductPage: FC<T> = ({ projectData }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params) return { props: {} };
   console.log("running");
-  const query = `
-  query($id: ID!) {
-    Movie(id: $id) {
-      title
-    }
-  }
-  `;
 
+  const query = `
+  query($slug: String!) {
+    allProject(
+      where: {
+        slug: {
+          current: {matches: $slug}
+        }
+      }
+    ) {
+      slug {
+        current
+      }
+      title
+      _id
+    }
+  }`;
+
+  console.log("params:", params);
   const variables = {
-    id: "0c4e4f8d-d7a6-4162-aea8-431a18039e81",
+    slug: params.slug,
   };
 
   // Data fetching
   const response = await querySanity(query, variables);
-  console.log(response);
+  // console.log(response.data);
 
   return {
     props: {
@@ -70,7 +81,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const query = `
     query {
-      allMovie {
+      allProject {
         slug {
           current
         }
@@ -84,11 +95,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
       data: { data: projects },
     } = response;
 
-    const paths = projects.allMovie.map(
-      ({ slug, id }: { slug: { current: string }; id: string }) => ({
-        params: { slug: slug.current || "", id },
+    const paths = projects.allProject.map(
+      ({ slug }: { slug: { current: string } }) => ({
+        params: { slug: slug.current },
       })
     );
+
     console.log(paths);
 
     return {
@@ -96,6 +108,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
       fallback: false,
     };
   } catch (err) {
+    console.log(err);
     return {
       paths: [
         {

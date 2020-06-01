@@ -7,9 +7,6 @@ type T = any;
 const Head: FC<T> = () => {
   return (
     <div>
-      <AnnouncementBar>
-        <span>20% discount with code: blckfrdy</span>
-      </AnnouncementBar>
       <Navigation />
     </div>
   );

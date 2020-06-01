@@ -10,7 +10,6 @@ const FooterComponent: FC<T> = () => {
     <Footer style={{ backgroundImage: "url('/images/border.png')" }}>
       <div className="container">
         <div className="col">
-          <h3>Newsletter</h3>
           {/* <input type="text" name="" id="" placeholder="Your e-mail here"/>
          <input type="submit" name="" id=""/> */}
           <EmailSubmit />
@@ -18,11 +17,11 @@ const FooterComponent: FC<T> = () => {
 
         {/* Logo */}
         <div className="col">
-          <h1>TARZANA</h1>
+          <h1>Footer</h1>
         </div>
 
         {/* Navigation */}
-        <div className="col">
+        {/* <div className="col">
           <ul role="nav">
             <li>
               <Link href="/">
@@ -45,7 +44,7 @@ const FooterComponent: FC<T> = () => {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </Footer>
   );
@@ -55,13 +54,9 @@ const Footer = styled.footer`
   color: #000;
   text-align: left;
   border: 1px solid green;
-  padding-top: 12em;
-  background-size: 130%;
-  background-repeat: no-repeat;
-  background-position: 39% 1%;
+  background-color: #eee;
 
   .container {
-    background-color: #fff;
     max-width: ${({ theme }) => theme.maxWidth};
     margin-left: auto;
     margin-right: auto;
@@ -70,15 +65,6 @@ const Footer = styled.footer`
 
     .col {
       flex: 1;
-    }
-  }
-
-  ul {
-    columns: 2;
-    padding-left: 0;
-    list-style: none;
-
-    li {
     }
   }
 `;

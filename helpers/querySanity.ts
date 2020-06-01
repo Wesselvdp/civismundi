@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 interface V {
-  [key: string]: string | number;
+  [key: string]: string | string[] | number;
+  [key: number]: string | number;
 }
 
 const querySanity = async (

@@ -7,28 +7,11 @@ const NavigationComponent: FC<T> = () => {
   return (
     <Container>
       <Navigation>
-        <div className="left">Instagram</div>
-
-        <Link href="/products">
-          <a>Products</a>
-        </Link>
-        <Link href="/products">
-          <a>Products</a>
-        </Link>
         <div id="logo">
           <Link href="/">
-            <a>
-              <img src="/images/logo.svg" alt="Tarzana logo" />
-            </a>
+            <a>CIVIS MUNDI</a>
           </Link>
         </div>
-        <Link href="">
-          <a>Item</a>
-        </Link>
-        <Link href="">
-          <a>Item</a>
-        </Link>
-        <div className="right">Cart</div>
       </Navigation>
     </Container>
   );

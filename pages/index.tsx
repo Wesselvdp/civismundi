@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import querySanity from "@/helpers/querySanity";
 
 // Components
-// import Mast from "@components/sections/Mast";
+import Mast from "@components/sections/Mast";
 // import FeaturedProducts from "@components/sections/FeaturedProducts";
 // import Instagram from "@components/sections/Instagram";
 
@@ -81,7 +81,11 @@ const HomePage: FC<T> = () => {
   // const projects = JSON.parse(allProjects);
   // const checkoutX = JSON.parse(checkout);
   // console.log("the project:", projects);
-  return <h1>hey</h1>;
+  return (
+    <>
+      <Mast />
+    </>
+  );
 };
 
 export default HomePage;

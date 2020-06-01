@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 // Components
 import Section from "./Section";
+import BackgroundVideo from "@components/BackgroundVideo";
 
 type T = any;
 
@@ -10,6 +11,7 @@ const Mast: FC<T> = () => {
   return (
     <Section>
       <Title>Mast</Title>
+      <BackgroundVideo />
     </Section>
   );
 };
