@@ -1,29 +1,27 @@
 {
   "name": "tarzana-shopify-theme",
   "version": "1.0.0",
-  "description": "A Webshop for Tarzana built with Nextjs + Typescript",
+  "description": "Website for Civis Mundi, built with NextJS and Sanity",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "storybook": "start-storybook -p 6006 -c .storybook"
   },
   "dependencies": {
     "@sanity/client": "^1.149.13",
-    "@types/shopify-buy": "^1.11.1",
     "axios": "^0.19.2",
     "formik": "^2.1.4",
     "next": "latest",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "sass": "^1.26.5",
-    "shopify-buy": "^2.10.0",
-    "shopify-storefront-api-typings": "^1.2.1",
     "styled-components": "^5.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Wesselvdp/webshop-tarzana.git"
+    "url": "git+ssh://git@github.com/Wesselvdp/civismundi.git"
   },
   "keywords": [
     "shopify",
@@ -34,17 +32,23 @@
     "webshop"
   ],
   "devDependencies": {
-    "@types/node": "12.0.12",
-    "@types/react": "16.8.23",
+    "@babel/core": "^7.10.2",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@storybook/theming": "^5.3.19",
+    "@types/node": "^12.0.12",
+    "@types/react": "^16.8.23",
     "@types/react-dom": "16.8.4",
     "@types/styled-components": "5.0.1",
+    "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.0",
-    "typescript": "3.5.2"
+    "babel-preset-react-app": "^9.1.2",
+    "typescript": "^3.5.2"
   },
   "author": "Wessel van der Plas",
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/Wesselvdp/webshop-tarzana/issues"
+    "url": "https://github.com/Wesselvdp/civismundi/issues"
   },
-  "homepage": "https://github.com/Wesselvdp/webshop-tarzana#readme"
+  "homepage": "https://github.com/Wesselvdp/civismundi#readme"
 }
