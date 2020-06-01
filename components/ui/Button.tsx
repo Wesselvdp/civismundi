@@ -111,6 +111,7 @@ const Button = styled("button")<StyleProps>`
       `
       color: ${theme.colors.primary};
       background-color:  ${theme.colors.secondary};
+      border: 2px solid  ${theme.colors.secondary};
 
       &:hover:not(.no-hover) {
         color: ${theme.colors.secondary};

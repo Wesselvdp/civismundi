@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "storybook": "start-storybook -p 6006 -c .storybook"
+    "storybook": "start-storybook -p 6006 -c .storybook -s ./public"
   },
   "dependencies": {
     "@sanity/client": "^1.149.13",
@@ -43,6 +43,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.0",
     "babel-preset-react-app": "^9.1.2",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "^3.5.2"
   },
   "author": "Wessel van der Plas",
