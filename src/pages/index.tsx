@@ -1,11 +1,9 @@
 import React, { FC, useEffect } from "react";
 import { GetStaticProps } from "next";
-import querySanity from "@/helpers/querySanity";
+import querySanity from "@helpers/querySanity";
 
 // Components
-import Mast from "@components/sections/Mast";
-// import FeaturedProducts from "@components/sections/FeaturedProducts";
-// import Instagram from "@components/sections/Instagram";
+import Mast from "components/sections/Mast";
 
 type T = {
   allProject: any;
@@ -19,7 +17,8 @@ const HomePage: FC<T> = ({ allProject }) => {
 
   return (
     <>
-      <Mast />
+      <Mast projects={projects} />
+      {/* <Carousel items={projects} /> */}
     </>
   );
 };
@@ -30,6 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const query = `
     query {
       allProject {
+        title
         slug {
           current
         }

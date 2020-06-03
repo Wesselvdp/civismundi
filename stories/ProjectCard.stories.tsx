@@ -2,7 +2,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 
 // Components
-import PostCard from "@components/post/PostCard";
+import PostCard from "@co@/src/components/project/ProjectCard
 import PostGrid from "@/components/post/PostGrid";
 storiesOf("Posts", module).add("Single post", () => {
   return (

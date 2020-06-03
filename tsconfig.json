@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "esnext",
     "jsx": "preserve",
     "lib": ["dom", "es2017"],
@@ -21,10 +21,10 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@shopify": ["lib/shopify"],
-      "@/*": ["./*"],
-      "@hooks/*": ["./hooks/*"]
+      "components/*": ["src/components/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@interfaces": ["types/interfaces"]
     }
   },
   "exclude": ["node_modules"],

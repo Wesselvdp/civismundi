@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import Button from "../components/ui/Button";
+import Button from "../src/components/ui/Button";
 
 storiesOf("Button", module).add("with text", () => {
   return (

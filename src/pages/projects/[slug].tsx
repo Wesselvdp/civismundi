@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import querySanity from "@/helpers/querySanity";
+import querySanity from "@/src/helpers/querySanity";
 
 import { GetStaticPaths, GetStaticProps } from "next";
 
