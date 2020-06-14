@@ -5,7 +5,7 @@ import { Project } from "@interfaces";
 
 // Components
 import Section from "./Section";
-
+import Globe from "components/Globe";
 import Carousel from "components/carousel/Carousel";
 
 type T = {
@@ -15,7 +15,10 @@ type T = {
 const Mast: FC<T> = ({ projects }) => {
   return (
     <MastSection className="mast">
-      <Carousel items={projects} />
+      {/* <Carousel items={projects} /> */}
+      <div style={{ width: "100vw", height: "100vh" }}>
+        <Globe />
+      </div>
     </MastSection>
   );
 };

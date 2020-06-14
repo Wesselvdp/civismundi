@@ -18,8 +18,10 @@
     "next": "latest",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-globe": "^4.0.0",
     "sass": "^1.26.5",
-    "styled-components": "^5.0.0"
+    "styled-components": "^5.0.0",
+    "three": "^0.117.1"
   },
   "repository": {
     "type": "git",
