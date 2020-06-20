@@ -1,7 +1,7 @@
 import { addDecorator, configure } from "@storybook/react";
-import Theme from "../theme";
+import Theme from "../src/theme";
 import { ThemeProvider } from "styled-components";
-import "../styles/main.scss";
+import "../src/styles/main.scss";
 
 // automatically import all files ending in *.stories.tsx
 

@@ -5,8 +5,8 @@ import { Project } from "@interfaces";
 
 // Components
 import Section from "./Section";
-import Globe from "components/Globe";
-import Carousel from "components/carousel/Carousel";
+// import Globe from "components/Globe";
+import Globe from "components/CustomLayerGlobe";
 
 type T = {
   projects: Project[];

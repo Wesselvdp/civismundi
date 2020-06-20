@@ -13,7 +13,7 @@ const BackgroundVideo: FC<T> = () => {
         muted
         loop
       >
-        <source src="/video.mp4" type="video/mp4" />
+        <source src="/video2.mp4" type="video/mp4" />
       </video>
     </VideoContainer>
   );
