@@ -7,9 +7,10 @@ import * as THREE from "three";
 import BackgroundVideo from "components/BackgroundVideo";
 
 import { renderToString } from "react-dom/server";
-
 import Globe from "react-globe.gl";
 import { Console } from "console";
+import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
+
 // const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 // const THREE = dynamic(() => import("three"), { ssr: false });
 
@@ -85,24 +86,118 @@ const GlobeComponent: FC<T> = () => {
 
   useEffect(() => {
     console.log("instance:", globeEl.current.renderer());
-    // globeEl.current.renderer({ alpha: true });
-    globeEl.current.pointOfView({ altitude: 3.5 });
-    globeEl.current.controls().autoRotateSpeed = 0.3;
-    globeEl.current.pointOfView({ lat: 9.6, lng: -34.5, altitude: 1.5 });
+
     //  Clouds
     // const clouds2 = globeEl.current.scene().children[0];
     const scene = globeEl.current.scene();
     const globeMesh =
       scene.children.length > 1 &&
-      scene.getObjectByProperty("uuid", scene.children[4].uuid);
+      scene.getObjectByProperty("uuid", scene.children[3].uuid);
 
     // console.log("globe", globeMesh);
     console.log("scene", scene.children);
     // scene.remove(globeMesh);
     cloudMesh.renderOrder = 1;
     scene.add(cloudMesh);
-    console.log("clouds", cloudMesh);
-    console.log("scene", scene.children);
+  }, [globeEl.current]);
+
+  useEffect(() => {
+    const loadSVG = (url) => {
+      //
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xb0b0b0);
+
+      //
+
+      var helper = new THREE.GridHelper(160, 10);
+      helper.rotation.x = Math.PI / 2;
+      scene.add(helper);
+
+      //
+
+      var loader = new SVGLoader();
+
+      loader.load(url, function (data) {
+        var paths = data.paths;
+
+        var group = new THREE.Group();
+        group.scale.multiplyScalar(0.25);
+        group.position.x = -70;
+        group.position.y = 70;
+        group.scale.y *= -1;
+
+        for (var i = 0; i < paths.length; i++) {
+          var path = paths[i];
+
+          var fillColor = path.userData.style.fill;
+          if (
+            guiData.drawFillShapes &&
+            fillColor !== undefined &&
+            fillColor !== "none"
+          ) {
+            var material = new THREE.MeshBasicMaterial({
+              color: new THREE.Color().setStyle(fillColor),
+              opacity: path.userData.style.fillOpacity,
+              transparent: path.userData.style.fillOpacity < 1,
+              side: THREE.DoubleSide,
+              depthWrite: false,
+              wireframe: guiData.fillShapesWireframe,
+            });
+
+            var shapes = path.toShapes(true);
+
+            for (var j = 0; j < shapes.length; j++) {
+              var shape = shapes[j];
+
+              var geometry = new THREE.ShapeBufferGeometry(shape);
+              var mesh = new THREE.Mesh(geometry, material);
+              // mesh.lookAt(globeEl.current.camera().position);
+
+              group.add(mesh);
+            }
+          }
+
+          var strokeColor = path.userData.style.stroke;
+
+          if (
+            guiData.drawStrokes &&
+            strokeColor !== undefined &&
+            strokeColor !== "none"
+          ) {
+            var material = new THREE.MeshBasicMaterial({
+              color: new THREE.Color().setStyle(strokeColor),
+              opacity: path.userData.style.strokeOpacity,
+              transparent: path.userData.style.strokeOpacity < 1,
+              side: THREE.DoubleSide,
+              depthWrite: false,
+              wireframe: guiData.strokesWireframe,
+            });
+
+            for (var j = 0, jl = path.subPaths.length; j < jl; j++) {
+              var subPath = path.subPaths[j];
+
+              var geometry = SVGLoader.pointsToStroke(
+                subPath.getPoints(),
+                path.userData.style
+              );
+
+              if (geometry) {
+                var mesh = new THREE.Mesh(geometry, material);
+                // mesh.lookAt(globeEl.current.camera().position);
+
+                group.add(mesh);
+              }
+            }
+          }
+        }
+        group.lookAt(globeEl.current.camera().position);
+
+        globeEl.current.scene().add(group);
+      });
+    };
+    loadSVG("/tiger.svg");
+    console.log(globeEl.current.scene());
   }, [globeEl]);
 
   useEffect(() => {
@@ -122,12 +217,12 @@ const GlobeComponent: FC<T> = () => {
       }
     );
 
-    setInterval(
-      () => (
-        (cloudMesh.rotation.y -= 0.00005), (cloudMesh.rotation.x -= 0.00001)
-      ),
-      10
-    );
+    // setInterval(
+    //   () => (
+    //     (cloudMesh.rotation.y -= 0.00005), (cloudMesh.rotation.x -= 0.00001)
+    //   ),
+    //   10
+    // );
 
     setTimeout(() => {
       // wait for scene to be populated (asynchronously)
@@ -179,6 +274,14 @@ const GlobeComponent: FC<T> = () => {
       }}
     />
   );
+};
+
+const guiData = {
+  currentURL: "models/svg/tiger.svg",
+  drawFillShapes: true,
+  drawStrokes: true,
+  fillShapesWireframe: false,
+  strokesWireframe: false,
 };
 
 const StyledThumbnail = styled.div`
